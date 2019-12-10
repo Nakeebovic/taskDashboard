@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title" id="basic-layout-form"> {{ 'Promo' | translate }} </h4>
+  </div>
+  <div class="card-body">
+    <div class="px-3">
+      <form class="form" [formGroup]="regularForm" novalidate (submit)="onSubmitClicked()">
+        <div class="form-body">
+          <h4 class="form-section"><i class="fas fa-info-circle"></i> {{'MainInfo' | translate }}</h4>
+
+          <div class="form-group">
+            <label for="name">{{'name' | translate}}</label>
+            <input type="text" id="name" class="form-control" formControlName="name" required [(ngModel)]="promo.name">
+            <small class="form-text text-muted danger" *ngIf="!regularForm.get('name').valid && (regularForm.get('name').dirty || regularForm.get('name').touched)">
+              {{'EnterAvalidData' | translate}}</small>
+          </div>
+
+          <div class="form-group">
+            <label for="description">{{'description' | translate}}</label>
+            <input type="text" id="description" class="form-control" formControlName="description" required [(ngModel)]="promo.description">
+            <small class="form-text text-muted danger" *ngIf="!regularForm.get('description').valid && (regularForm.get('description').dirty || regularForm.get('description').touched)">
+              {{'EnterAvalidData' | translate}}</small>
+          </div>
+          <div class="form-group">
+            <label for="info">{{'info' | translate}}</label>
+            <input type="text" id="info" class="form-control" formControlName="info" required [(ngModel)]="promo.info">
+            <small class="form-text text-muted danger" *ngIf="!regularForm.get('info').valid && (regularForm.get('info').dirty || regularForm.get('info').touched)">
+              {{'EnterAvalidData' | translate}}</small>
+          </div>
+         
+          
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-raised btn-raised btn-warning mr-1" (click)="router.navigate(['promo/show'])">
+            <i class="ft-x"></i> {{'cancel' | translate}}
+          </button>
+          <button type="submit" class="btn btn-raised btn-raised btn-primary" [disabled]="!regularForm.valid">
+            <i class="fa fa-check-square-o"></i> {{'save' | translate}}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

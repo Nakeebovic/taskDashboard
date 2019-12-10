@@ -1,0 +1,58 @@
+<div class="row text-left">
+
+ 
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">{{'AdminsTable' | translate}}</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th> {{'image' | translate}} </th>
+                <th>{{'name' | translate}}</th>
+                <th>{{'Email' | translate}}</th>
+                <!-- <th>{{'device_id' | translate}}</th> -->
+                <th>{{'status' | translate}}</th>
+                <th>{{'actions' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let admin of admins[offset]">
+                <th scope="row">{{ admin.id }}</th>
+                <td>
+                  <img *ngIf="admin.image" [src]="imageBaseURL + '/' + admin.image.for + '/' + admin.image.name " [alt]="admin.image.alt"
+                    [title]="admin.image.description">
+                  <img *ngIf="!admin.image" src="./assets/img/portrait/avatars/avatar-08.png">
+                </td>
+                <td>{{ admin.name }}</td>
+                <td>{{ admin.email }}</td>
+                <!-- <td> {{admin.device_id}} </td> -->
+                <td> {{ admin.status | translate }} </td>
+                <td>
+                  <a class="success p-0" data-original-title="" title="{{'edit' | translate}}" (click)="onEditClicked(admin)">
+                    <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                  </a>
+                  <a class="danger p-0" data-original-title="" title="{{'delete' | translate}}" (click)="onDeleteClicked(admin)">
+                    <i class="ft-x font-medium-3 mr-2"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer">
+        <!-- <ngb-pagination class="d-flex justify-content-center" [collectionSize]="adminsCount" [(page)]="offset"
+          (pageChanged)="onLoadMore()"></ngb-pagination> -->
+        <pagination class="d-flex justify-content-center" [totalItems]="adminsCount" [(ngModel)]="offset" (pageChanged)="onLoadMore()">
+
+        </pagination>
+
+      </div>
+    </div>
+  </div>
+</div>

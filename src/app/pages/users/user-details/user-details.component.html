@@ -1,0 +1,42 @@
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title" id="basic-layout-form"> {{ 'Edit User' | translate }} </h4>
+  </div>
+  <div class="card-body">
+    <div class="px-3">
+      <form class="form" [formGroup]="regularForm" novalidate (submit)="onCreatePressed()">
+        <div class="form-body">
+          <h4 class="form-section"><i class="fas fa-info-circle"></i> {{'MainInfo' | translate }}</h4>
+
+          <div class="form-group">
+            <label for="phone">{{'phone number' | translate}}</label>
+            <input type="text" id="phone" class="form-control" formControlName="phone" required
+              [(ngModel)]="UserData.phone">
+            <small class="form-text text-muted danger"
+              *ngIf="!regularForm.get('phone').valid && (regularForm.get('phone').dirty || regularForm.get('phone').touched)">
+              {{'EnterAvalidData' | translate}}</small>
+          </div>
+          <div class="form-group">
+            <label for="status"> {{ 'status' | translate }} </label>
+            <select id="status" name="category" class="form-control" formControlName="status" required
+              [(ngModel)]="UserData.status">
+              <option *ngFor="let stat of status" [value]='stat'> {{ stat | translate }} </option>
+            </select>
+            <small class="form-text text-muted danger"
+              *ngIf="!regularForm.get('status').valid && (regularForm.get('status').dirty || regularForm.get('status').touched)">
+              {{'EnterAvalidData' | translate}}</small>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-raised btn-raised btn-warning mr-1"
+            (click)="router.navigate(['users/show'])">
+            <i class="ft-x"></i> {{'cancel' | translate}}
+          </button>
+          <button type="submit" class="btn btn-raised btn-raised btn-primary" [disabled]="!regularForm.valid">
+            <i class="fa fa-check-square-o"></i> {{'save' | translate}}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

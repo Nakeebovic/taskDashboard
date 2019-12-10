@@ -1,0 +1,54 @@
+<div class="row text-left">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">{{'UserTable' | translate}}</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>{{'phone number' | translate}}</th>
+                <th>{{'actions' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of Users[filterData.offset]">
+                <th scope="row">{{ user.id }}</th>
+
+                <td>{{ user.phone }}</td>
+
+                <!-- <td> {{user.category |translate }} </td> -->
+                <td>
+                  <a class="success p-0" data-original-title="" title="{{'edit' | translate}}"
+                    [routerLink]="['/users/details/' + user.id]">
+                    <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                  </a>
+                  <a class="danger p-0" data-original-title="" title="{{'delete' | translate}}"
+                    (click)="onDeleteUserClicked(user)">
+                    <i class="ft-x font-medium-3 mr-2"></i>
+                  </a>
+                  <a class="success p-0" *ngIf="user.status != 'active'" title="{{'approve' | translate}}"
+                    (click)="onApproveUserclicked(user , 'active')">
+                    <i class="ft-repeat font-medium-3 mr-2"></i>
+                  </a>
+                  <a class="danger p-0" *ngIf="user.status == 'active'" title="{{'dis approve' | translate}}"
+                    (click)="onApproveUserclicked(user , 'not_active')">
+                    <i class="ft-repeat font-medium-3 mr-2"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer">
+        <pagination class="d-flex justify-content-center" [totalItems]="usersCount" [ngModel]="filterData.offset"
+          (ngModelChange)="onLoadMore($event)">
+        </pagination>
+      </div>
+    </div>
+  </div>
+</div>

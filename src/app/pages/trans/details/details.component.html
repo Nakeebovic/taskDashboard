@@ -1,0 +1,47 @@
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title" id="basic-layout-form"> {{ 'trans' | translate }} </h4>
+  </div>
+  <div class="card-body">
+    <div class="px-3">
+      <form class="form" [formGroup]="regularForm" novalidate (submit)="onSubmitClicked()">
+        <div class="form-body">
+          <h4 class="form-section"><i class="fas fa-info-circle"></i> {{'MainInfo' | translate }}</h4>
+
+          <div class="form-group">
+            <label for="name">{{'name' | translate}}</label>
+            <input type="text" id="name" class="form-control" formControlName="name" required [(ngModel)]="trans.name">
+            <small class="form-text text-muted danger" *ngIf="!regularForm.get('name').valid && (regularForm.get('name').dirty || regularForm.get('name').touched)">
+              {{'EnterAvalidData' | translate}}</small>
+          </div>
+
+          <div class="form-group">
+            <label for="value">{{'value' | translate}}</label>
+            <input type="text" id="value" class="form-control" formControlName="value" required [(ngModel)]="trans.value">
+            <small class="form-text text-muted danger" *ngIf="!regularForm.get('value').valid && (regularForm.get('value').dirty || regularForm.get('value').touched)">
+              {{'EnterAvalidData' | translate}}</small>
+          </div>
+          <div class="form-group">
+            <label for="type"> {{ 'type' | translate }} </label>
+            <select id="type" name="category" class="form-control" formControlName="type" required
+              [(ngModel)]="trans.type">
+              <option *ngFor="let typee of type" [value]='typee'> {{ typee | translate }} </option>
+            </select>
+            <small class="form-text text-muted danger"
+              *ngIf="!regularForm.get('type').valid && (regularForm.get('type').dirty || regularForm.get('type').touched)">
+              {{'EnterAvalidData' | translate}}</small>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-raised btn-raised btn-warning mr-1" (click)="router.navigate(['trans/show'])">
+            <i class="ft-x"></i> {{'cancel' | translate}}
+          </button>
+          <button type="submit" class="btn btn-raised btn-raised btn-primary" [disabled]="!regularForm.valid">
+            <i class="fa fa-check-square-o"></i> {{'save' | translate}}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

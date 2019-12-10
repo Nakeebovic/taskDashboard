@@ -1,0 +1,43 @@
+<div class="row text-left">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">{{'Pormo' | translate}}</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+
+                <th>{{'name' | translate}}</th>
+                <th>{{'description' | translate}}</th>
+                <th>{{'info' | translate}}</th>
+                <th>{{'actions' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let o of promo">
+                <th scope="row">{{ o.id }}</th>
+                <td>{{ o.name}}</td>
+                <td> {{o.description}} </td>
+                <td> {{o.info}} </td>
+                <td>
+                  <a class="danger p-0" data-original-title="" title="{{'delete' | translate}}"
+                    (click)="onDeleteUserClicked(o)">
+                    <i class="ft-x font-medium-3 mr-2"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer">
+        <pagination class="d-flex justify-content-center" [totalItems]="questionCount" [ngModel]="filterData.offset"
+          (ngModelChange)="onLoadMore($event)">
+        </pagination>
+      </div>
+    </div>
+  </div>

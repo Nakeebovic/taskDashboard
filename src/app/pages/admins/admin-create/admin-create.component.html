@@ -1,0 +1,93 @@
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title" id="basic-layout-form"> {{ 'NewAdmin' | translate }} </h4>
+  </div>
+  <div class="card-body">
+    <div class="px-3">
+      <form class="form" [formGroup]="regularForm" novalidate (submit)="onSubmitClicked()">
+        <div class="form-body">
+          <h4 class="form-section"><i class="fas fa-info-circle"></i> {{'MainInfo' | translate }}</h4>
+
+          <div class="form-group">
+            <label for="name">{{'name' | translate}}</label>
+            <input type="text" id="name" class="form-control" formControlName="name" required [(ngModel)]="AdminData.name">
+            <small class="form-text text-muted danger" *ngIf="!regularForm.get('name').valid && (regularForm.get('name').dirty || regularForm.get('name').touched)">
+              {{'EnterAvalidData' | translate}}</small>
+          </div>
+
+
+          <!-- <div class="form-group">
+            <label for="device_id">{{'device_id' | translate}}</label>
+            <input type="text" id="device_id" class="form-control" formControlName="device_id" [(ngModel)]="AdminData.device_id">
+          </div> -->
+
+
+          <div class="form-group">
+            <label for="email">{{'Email' | translate}}</label>
+            <input type="text" id="email" class="form-control" formControlName="email" required [(ngModel)]="AdminData.email">
+            <small class="form-text text-muted danger" *ngIf="!regularForm.get('email').valid && (regularForm.get('email').dirty || regularForm.get('email').touched)">
+              {{'EnterAvalidData' | translate}}</small>
+          </div>
+
+
+          <div class="form-group">
+            <label for="status"> {{ 'status' | translate }} </label>
+            <select id="status" name="category" class="form-control" formControlName="status" required [(ngModel)]="AdminData.status">
+              <option *ngFor="let stat of status" [value]='stat'> {{ stat | translate }} </option>
+            </select>
+            <small class="form-text text-muted danger" *ngIf="!regularForm.get('status').valid && (regularForm.get('status').dirty || regularForm.get('status').touched)">
+              {{'EnterAvalidData' | translate}}</small>
+          </div>
+
+          <div class="form-group">
+            <label for="passwordConfirm"> {{ 'Password' | translate }} </label>
+            <input type="password" class="form-control" name="password" id="password" formControlName="password"
+              [(ngModel)]="AdminData.password" required>
+            <small class="form-text text-muted danger" *ngIf="!regularForm.get('password').valid && (regularForm.get('password').dirty || regularForm.get('password').touched)">
+              {{'EnterAvalidData' | translate}}</small>
+          </div>
+
+          <div class="form-group">
+            <label for="passwordConfirm"> {{ 'PasswordConfirm' | translate }} </label>
+            <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm" formControlName="passwordConfirm"
+              [(ngModel)]="AdminData.passwordConfirm" required>
+            <small class="form-text text-muted danger" *ngIf="!regularForm.get('passwordConfirm').valid && (regularForm.get('passwordConfirm').dirty || regularForm.get('passwordConfirm').touched) && AdminData.password != AdminData.passwordConfirm">
+              {{'EnterAvalidData' | translate}}</small>
+
+          </div>
+
+          <h4 class="form-section"><i class="fas fa-images"></i> {{'Images' | translate}} </h4>
+          <small> {{'500X500Size' | translate}} </small>
+          <div class="ImagesContinare">
+            <ng-container *ngIf="AdminData.image">
+              <div class="Hovercontainer">
+                <img class="image" [src]="'data:image/jpeg;base64,' + AdminData.image.base64">
+                <div class="middle">
+                  <a class="text" (click)="AdminData.image = null"> <i class="fas fa-trash" style="color: red"></i> </a>
+                </div>
+              </div>
+            </ng-container>
+            <button style="display: block" class="btn btn-primary" type="button" placement="top" tooltip="{{'AddImages' | translate}}"
+              (click)="Multiablefile.click()">
+              <i class="fas fa-plus-circle" style="color: white"></i>
+            </button>
+          </div>
+          <div class="form-group">
+            <input type="file" style="display : none" #file id="file" (change)="onFileChanges($event)" accept=".png, .jpg, .jpeg">
+            <input type="file" multiple="true" style="display : none" #Multiablefile id="Multiablefile" (change)="onFileChanges($event)">
+          </div>
+
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-raised btn-raised btn-warning mr-1" (click)="router.navigate(['blogs/show'])">
+            <i class="ft-x"></i> {{'cancel' | translate}}
+          </button>
+          <button type="submit" class="btn btn-raised btn-raised btn-primary" [disabled]="!regularForm.valid">
+            <i class="fa fa-check-square-o"></i> {{'save' | translate}}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
