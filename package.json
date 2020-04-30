@@ -42,7 +42,7 @@
     "google": "^2.1.0",
     "gulp": "4.0.0",
     "intl": "1.2.5",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "location-picker": "^1.1.1",
     "chartist": "^0.11.3",
     "ng-chartist": "^4.1.0",
