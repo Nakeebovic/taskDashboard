@@ -62,7 +62,7 @@
     "ngx-perfect-scrollbar": "5.3.5",
     "ngx-spinner": "^7.1.4",
     "ngx-ui-switch": "^8.1.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "prismjs": "1.15.0",
     "resize-observer-polyfill": "1.5.0",
     "rxjs": "6.4.0",
